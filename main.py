@@ -12,7 +12,6 @@ app = FastAPI()
 CARD = '''BEGIN:VCARD
 VERSION:3.0
 N:{}
-NOTES:{}
 TITLE:{}
 END:VCARD'''
 
@@ -27,7 +26,6 @@ async def get(host):
     for path_key in paths:
     	methods = vars(paths[path_key])
     	for method_key in methods:
-    	    names = methods[method_key].summary.split()
-    	    cards.append(CARD.format(methods[method_key].summary, path_key, method_key))
+    	    cards.append(CARD.format(methods[method_key].summary, path_key))
     	    
     return ''.join(cards)
